@@ -19,4 +19,5 @@ public class Order implements Serializable {
     private Date createTime;
     private double payment;
     private Date paymentDate;
+    private String remark;
 }

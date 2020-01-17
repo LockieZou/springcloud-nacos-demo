@@ -1,5 +1,6 @@
 package com.lockie.cloudorder.controller;
 
+import com.lockie.cloudorder.client.CloudUserClient;
 import com.lockie.cloudorder.model.Order;
 import com.lockie.cloudorder.model.Results;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,8 @@ public class CloudOrderController extends BaseController {
 
     @Autowired
     RestTemplate restTemplate;
+    @Autowired
+    CloudUserClient cloudUserClient;
 
     private final static String USER_SERVICE = "cloud-user-service";
     private final static String GET_USER_NAME = "/cloudUser/getUserName";
@@ -39,7 +42,7 @@ public class CloudOrderController extends BaseController {
     }
 
     /**
-     * 获取订单信息
+     * RestTemplate调用方式，获取订单信息
      * @return
      */
     @GetMapping("/getOrder")
@@ -51,6 +54,24 @@ public class CloudOrderController extends BaseController {
         order.setId(1);
         order.setUserName(userName);
         order.setCreateTime(new Date());
+        order.setRemark("RestTemplate调用方式获取用户信息");
+
+        return succeed(order);
+    }
+
+    /**
+     * Feign调用方式，获取订单信息
+     * @return
+     */
+    @GetMapping("/getFeignOrder")
+    public Results getFeignOrder() {
+        String userName = cloudUserClient.getUserName();
+
+        Order order = new Order();
+        order.setId(2);
+        order.setUserName(userName);
+        order.setCreateTime(new Date());
+        order.setRemark("Feign调用方式获取用户信息");
 
         return succeed(order);
     }
