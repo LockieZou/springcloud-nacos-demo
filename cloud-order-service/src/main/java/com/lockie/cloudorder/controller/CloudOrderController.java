@@ -27,6 +27,8 @@ public class CloudOrderController extends BaseController {
 
     @Value("${nacos.test:132}")
     String nacosTest;
+    @Value("${spring.datasource.username:lockie}")
+    String mysqlUserName;
 
     @Autowired
     RestTemplate restTemplate;
@@ -36,9 +38,22 @@ public class CloudOrderController extends BaseController {
     private final static String USER_SERVICE = "cloud-user-service";
     private final static String GET_USER_NAME = "/cloudUser/getUserName";
 
+    /**
+     * 获取配置文件内容
+     * @return
+     */
     @GetMapping("/getProperties")
     public Results getProperties() {
         return succeed(nacosTest);
+    }
+
+    /**
+     * 获取mysql数据库配置用户名
+     * @return
+     */
+    @GetMapping("/getMysqlProperties")
+    public Results getMysqlProperties() {
+        return succeed(mysqlUserName);
     }
 
     /**

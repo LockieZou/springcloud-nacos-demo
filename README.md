@@ -29,8 +29,13 @@ springcloud nacos demo 项目
 
 通过上面接口获取每个服务的配置中心值  
 
+cloud-order-service和cloud-user-service使用了通用的mysql配置  
+文件可以通过 http://localhost:8803/cloudOrder/getMysqlProperties 获取数据库用户账户名   
+
 注册中心：<br/>
  http://localhost:8802/bootOrder/getOrder
  http://localhost:8803/cloudOrder/getOrder  
- order-service接口调用了user-service服务的获取用户名接口
+ order-service接口调用了user-service服务的获取用户名接口  
+   
+ cloud-order-service采用了RestTemplate和Feign两种方式调用
 
