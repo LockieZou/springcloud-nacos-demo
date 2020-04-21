@@ -19,7 +19,7 @@ springcloud nacos demo 项目
 
 
 ##### 简要说明
-本地搭建nacos服务 http://127.0.0.1:8848/nacos访问nacos控制台。<br/> 
+本地搭建nacos服务并启动然后访问http://127.0.0.1:8848/nacos 即可进入nacos控制台。<br/> 
   
 配置中心：<br/>
   http://localhost:8801/bootUser/getProperties  
@@ -37,5 +37,14 @@ cloud-order-service和cloud-user-service使用了通用的mysql配置
  http://localhost:8803/cloudOrder/getOrder  
  order-service接口调用了user-service服务的获取用户名接口  
    
- cloud-order-service采用了RestTemplate和Feign两种方式调用
+ cloud-order-service采用了RestTemplate和Feign两种方式调用  
+ 
+   
+  
+##### RocketMQ 测试步骤  
+ 启动windows本地nacos  
+ 启动windows本地RocketMq的namesrv 进入window本地rocketmq安装目录的bin目录下，执行 start mqnamesrv.cmd    
+ 启动windows本地RocketMq的Broker 进入windows本地rocketmq安装目录的bin目录下，执行 start mqbroker.cmd -n 127.0.0.1:9876 autoCreateTopicEnable=true  
+ 执行 boot-order-service 项目的MQProducerController的send方法，发送消息 http://127.0.0.1:8802/mqProducer/send?msg=hello  
+ 
 

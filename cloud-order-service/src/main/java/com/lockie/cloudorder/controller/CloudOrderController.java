@@ -7,9 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
@@ -88,6 +86,17 @@ public class CloudOrderController extends BaseController {
         order.setCreateTime(new Date());
         order.setRemark("Feign调用方式获取用户信息");
 
+        return succeed(order);
+    }
+
+    /**
+     * 添加order
+     * @param order
+     * @return
+     */
+    @PostMapping("/addOrder")
+    public Results addOrder(@RequestBody Order order) {
+        order.setRemark("手动添加order");
         return succeed(order);
     }
 }
