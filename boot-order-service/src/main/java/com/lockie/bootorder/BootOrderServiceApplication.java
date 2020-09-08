@@ -1,4 +1,4 @@
-package com.lockie.cloudorder;
+package com.lockie.bootorder;
 
 import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import lombok.extern.slf4j.Slf4j;

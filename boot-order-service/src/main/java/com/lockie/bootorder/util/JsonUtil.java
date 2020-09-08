@@ -1,4 +1,4 @@
-package com.lockie.cloudorder.util;
+package com.lockie.bootorder.util;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;

@@ -1,6 +1,6 @@
-package com.lockie.cloudorder.model;
+package com.lockie.bootorder.model;
 
-import com.lockie.cloudorder.constant.SysConstant;
+import com.lockie.bootorder.constant.SysConstant;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

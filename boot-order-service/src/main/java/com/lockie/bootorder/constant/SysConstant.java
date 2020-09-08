@@ -1,4 +1,4 @@
-package com.lockie.cloudorder.constant;
+package com.lockie.bootorder.constant;
 
 public enum SysConstant {
 

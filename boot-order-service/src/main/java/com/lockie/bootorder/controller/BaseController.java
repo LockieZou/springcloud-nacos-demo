@@ -1,7 +1,7 @@
-package com.lockie.cloudorder.controller;
+package com.lockie.bootorder.controller;
 
-import com.lockie.cloudorder.model.Results;
-import com.lockie.cloudorder.util.JsonUtil;
+import com.lockie.bootorder.util.JsonUtil;
+import com.lockie.bootorder.model.Results;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

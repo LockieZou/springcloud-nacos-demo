@@ -1,16 +1,15 @@
-package com.lockie.cloudorder.controller;
+package com.lockie.bootorder.controller;
 
 import com.alibaba.nacos.api.config.annotation.NacosValue;
-import com.lockie.cloudorder.client.UserServiceClient;
-import com.lockie.cloudorder.model.Order;
-import com.lockie.cloudorder.model.Results;
+import com.lockie.bootorder.client.UserServiceClient;
+import com.lockie.bootorder.model.Results;
+import com.lockie.bootorder.model.ShopOrder;
+import com.lockie.bootorder.service.BootShopOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Date;
 
 /**
  * @author: lockie
@@ -24,6 +23,8 @@ public class BootOrderController extends BaseController {
 
     @Autowired
     UserServiceClient userServiceClient;
+    @Autowired
+    BootShopOrderService bootShopOrderService;
 
     @NacosValue(value = "${nacos.test:123}", autoRefreshed = true)
     String properties;
@@ -35,18 +36,15 @@ public class BootOrderController extends BaseController {
 
 
     /**
-     * 获取订单
+     * 获取订单详情
      * @return
      */
-    @GetMapping("/getOrder")
-    public Results getOrder() {
+    @GetMapping("/getOrderById")
+    public Results getOrderById(Integer id) {
         String userName = userServiceClient.getUserName();
 
-        Order order = new Order();
-        order.setId(1);
-        order.setUserName(userName);
-        order.setCreateTime(new Date());
+        ShopOrder shopOrder = bootShopOrderService.getShopOrderById(id);
 
-        return succeed(order);
+        return succeed(shopOrder);
     }
 }
