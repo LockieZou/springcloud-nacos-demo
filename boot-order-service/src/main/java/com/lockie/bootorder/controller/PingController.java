@@ -1,6 +1,6 @@
-package com.lockie.cloudorder.controller;
+package com.lockie.bootorder.controller;
 
-import com.lockie.cloudorder.model.Results;
+import com.lockie.bootorder.model.Results;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
