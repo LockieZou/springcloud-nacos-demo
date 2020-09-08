@@ -1,4 +1,4 @@
-package com.lockie.cloudorder.config;
+package com.lockie.bootorder.config;
 
 import com.alibaba.nacos.api.annotation.NacosInjected;
 import com.alibaba.nacos.api.exception.NacosException;

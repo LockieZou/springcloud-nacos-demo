@@ -1,4 +1,4 @@
-package com.lockie.cloudorder.client;
+package com.lockie.bootorder.client;
 
 import com.alibaba.nacos.api.annotation.NacosInjected;
 import com.alibaba.nacos.api.naming.NamingService;

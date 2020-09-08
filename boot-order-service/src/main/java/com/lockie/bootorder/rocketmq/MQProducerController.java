@@ -1,6 +1,6 @@
-package com.lockie.cloudorder.rocketmq;
+package com.lockie.bootorder.rocketmq;
 
-import com.lockie.cloudorder.model.Results;
+import com.lockie.bootorder.model.Results;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;

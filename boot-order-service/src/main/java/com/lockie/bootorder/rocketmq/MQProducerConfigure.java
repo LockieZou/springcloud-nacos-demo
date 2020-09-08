@@ -1,4 +1,4 @@
-package com.lockie.cloudorder.rocketmq;
+package com.lockie.bootorder.rocketmq;
 
 import lombok.Getter;
 import lombok.Setter;
