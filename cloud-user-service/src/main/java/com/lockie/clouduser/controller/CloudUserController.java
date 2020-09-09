@@ -1,6 +1,7 @@
 package com.lockie.clouduser.controller;
 
 import com.lockie.clouduser.model.Results;
+import com.lockie.clouduser.model.User;
 import com.lockie.clouduser.service.CloudUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,7 @@ public class CloudUserController extends BaseController {
      * @return
      */
     @GetMapping("/getUserById")
-    public Results getUserById(@RequestParam("userId") Integer userId) {
-        return succeed(cloudUserService.getUserById(userId));
+    public User getUserById(@RequestParam("userId") Integer userId) {
+        return cloudUserService.getUserById(userId);
     }
 }

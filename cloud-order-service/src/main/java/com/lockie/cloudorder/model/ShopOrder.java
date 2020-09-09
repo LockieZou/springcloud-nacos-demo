@@ -37,6 +37,19 @@ public class ShopOrder {
 
     private Date updateDate;
 
+    /**
+     * 订单地址
+     */
+    private ShopAddress shopAddress;
+
+    public ShopAddress getShopAddress() {
+        return shopAddress;
+    }
+
+    public void setShopAddress(ShopAddress shopAddress) {
+        this.shopAddress = shopAddress;
+    }
+
     public Integer getId() {
         return id;
     }

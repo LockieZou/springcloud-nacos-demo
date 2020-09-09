@@ -14,4 +14,6 @@ public interface ShopAddressMapper {
     int updateByPrimaryKeySelective(ShopAddress record);
 
     int updateByPrimaryKey(ShopAddress record);
+
+    ShopAddress getAddressByOrderId(Integer orderId);
 }

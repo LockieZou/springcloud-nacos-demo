@@ -1,6 +1,6 @@
 package com.lockie.cloudorder.client;
 
-import com.lockie.cloudorder.model.Results;
+import com.lockie.cloudorder.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @author: lockie
  * @Date: 2020/1/17 13:43
- * @Description:
+ * @Description: 用户服务接口
  */
 @FeignClient(name = "cloud-user-service")
 @RequestMapping("/cloudUser")
@@ -28,5 +28,5 @@ public interface CloudUserClient {
      * @return
      */
     @GetMapping("/getUserById")
-    Results getUserById(@RequestParam("userId") Integer userId);
+    User getUserById(@RequestParam("userId") Integer userId);
 }

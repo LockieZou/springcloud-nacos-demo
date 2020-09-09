@@ -3,6 +3,7 @@ package com.lockie.cloudorder.controller;
 import com.lockie.cloudorder.client.CloudUserClient;
 import com.lockie.cloudorder.model.Results;
 import com.lockie.cloudorder.model.ShopOrder;
+import com.lockie.cloudorder.model.User;
 import com.lockie.cloudorder.service.CloudShopOrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -38,7 +39,7 @@ public class CloudOrderController extends BaseController {
     @Autowired
     CloudShopOrderService cloudShopOrderService;
 
-    private final static String USER_SERVICE = "cloud-user-com.lockie.cloudAddress.service";
+    private final static String USER_SERVICE = "cloud-user-service";
     private final static String GET_USER_NAME = "/cloudUser/getUserName";
 
     /**
@@ -100,8 +101,8 @@ public class CloudOrderController extends BaseController {
      */
     @GetMapping("/getFeignUserById")
     public Results getFeignUserById(Integer userId) {
-        Results res = cloudUserClient.getUserById(userId);
-        return res;
+        User user = cloudUserClient.getUserById(userId);
+        return succeed(user);
     }
 
     /**
@@ -111,6 +112,19 @@ public class CloudOrderController extends BaseController {
      */
     @PostMapping("/addOrder")
     public Results addOrder(@RequestBody ShopOrder shopOrder) {
+        if (shopOrder == null || shopOrder.getShopAddress() == null) {
+            return failure("订单或者订单地址为空！");
+        }
+        // 查询用户是否存在
+        if (shopOrder.getUserId() != null) {
+            User user = cloudUserClient.getUserById(shopOrder.getUserId());
+            if (user == null) {
+                return failure("用户不存在！");
+            }
+        } else {
+            return failure("用户ID为空");
+        }
+
         int i = cloudShopOrderService.saveShopOrder(shopOrder);
         return succeed(i);
     }

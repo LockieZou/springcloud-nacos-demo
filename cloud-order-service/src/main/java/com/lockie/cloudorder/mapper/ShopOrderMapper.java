@@ -14,4 +14,6 @@ public interface ShopOrderMapper {
     int updateByPrimaryKeySelective(ShopOrder record);
 
     int updateByPrimaryKey(ShopOrder record);
+
+    ShopOrder getOrderByOrderNo(String orderNo);
 }

@@ -12,5 +12,12 @@ public interface CloudShopOrderService {
 
     ShopOrder getShopOrderById(Integer id);
 
+    /**
+     * 根据订单编码查询
+     * @param orderNo
+     * @return
+     */
+    ShopOrder getShopOrderByOrderNo(String orderNo);
+
     int saveShopOrder(ShopOrder shopOrder);
 }
