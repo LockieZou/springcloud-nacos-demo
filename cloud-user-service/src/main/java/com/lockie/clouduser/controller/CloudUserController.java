@@ -1,8 +1,9 @@
 package com.lockie.clouduser.controller;
 
-import com.lockie.clouduser.model.Results;
 import com.lockie.clouduser.model.User;
 import com.lockie.clouduser.service.CloudUserService;
+import com.lockie.common.controller.BaseController;
+import com.lockie.common.model.Results;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

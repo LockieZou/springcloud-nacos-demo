@@ -1,8 +1,9 @@
 package com.lockie.bootuser.controller;
 
 import com.alibaba.nacos.api.config.annotation.NacosValue;
-import com.lockie.bootuser.model.Results;
 import com.lockie.bootuser.service.BootUserService;
+import com.lockie.common.controller.BaseController;
+import com.lockie.common.model.Results;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

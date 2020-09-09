@@ -1,6 +1,7 @@
 package com.lockie.bootuser.controller;
 
-import com.lockie.bootuser.model.Results;
+import com.lockie.common.controller.BaseController;
+import com.lockie.common.model.Results;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

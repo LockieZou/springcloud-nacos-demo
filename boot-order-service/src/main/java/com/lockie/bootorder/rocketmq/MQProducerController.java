@@ -1,6 +1,6 @@
 package com.lockie.bootorder.rocketmq;
 
-import com.lockie.bootorder.model.Results;
+import com.lockie.common.model.Results;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;

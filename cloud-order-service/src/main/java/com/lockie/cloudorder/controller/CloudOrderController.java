@@ -1,10 +1,11 @@
 package com.lockie.cloudorder.controller;
 
 import com.lockie.cloudorder.client.CloudUserClient;
-import com.lockie.cloudorder.model.Results;
 import com.lockie.cloudorder.model.ShopOrder;
 import com.lockie.cloudorder.model.User;
 import com.lockie.cloudorder.service.CloudShopOrderService;
+import com.lockie.common.controller.BaseController;
+import com.lockie.common.model.Results;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
