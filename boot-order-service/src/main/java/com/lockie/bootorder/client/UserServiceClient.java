@@ -31,7 +31,7 @@ public class UserServiceClient {
     public String getUserName() {
         try {
             if (namingService != null) {
-                // 选择 bootuser-service 服务的一个健康实例
+                // 选择 bootuser-com.lockie.cloudAddress.service 服务的一个健康实例
                 Instance instance = namingService.selectOneHealthyInstance(USER_SERVICE);
                 // 拼接请求url
                 String url = "http://" + instance.getIp() + ":" + instance.getPort() + GET_USER_NAME;
