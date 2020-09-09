@@ -2,7 +2,9 @@ package com.lockie.bootuser.controller;
 
 import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.lockie.bootuser.model.Results;
+import com.lockie.bootuser.service.BootUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +22,9 @@ public class BootUserController extends BaseController {
     @NacosValue(value = "${nacos.test:123}", autoRefreshed = true)
     String properties;
 
+    @Autowired
+    BootUserService bootUserService;
+
     @RequestMapping("/getProperties")
     public Results getProperties() {
         return succeed(properties);
@@ -32,5 +37,16 @@ public class BootUserController extends BaseController {
     @GetMapping("/getUserName")
     public String getUserName() {
         return "lockie";
+    }
+
+    /**
+     * 根据用户ID查询
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/getUserById")
+    public Results getUserById(Integer id) {
+        return succeed(bootUserService.getUserById(id));
     }
 }

@@ -2,6 +2,7 @@ package com.lockie.bootorder;
 
 import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import lombok.extern.slf4j.Slf4j;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,6 +10,7 @@ import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
 @Slf4j
+@MapperScan("com.lockie.bootorder.mapper")
 @SpringBootApplication
 @NacosPropertySource(dataId = "boot-order-service", autoRefreshed = true)
 public class BootOrderServiceApplication {
