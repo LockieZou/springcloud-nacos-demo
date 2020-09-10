@@ -9,16 +9,15 @@
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="other_account" jdbcType="VARCHAR" property="otherAccount" />
-    <result column="other_account_type" jdbcType="VARCHAR" property="otherAccountType" />
+    <result column="account_money" jdbcType="DECIMAL" property="accountMoney" />
     <result column="create_by" jdbcType="VARCHAR" property="createBy" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
     <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_name, password, phone, email, status, address, other_account, other_account_type, 
-    create_by, create_date, update_by, update_date
+    id, user_name, password, phone, email, status, address, account_money, create_by, 
+    create_date, update_by, update_date
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -33,14 +32,14 @@
   <insert id="insert" parameterType="com.lockie.clouduser.model.User">
     insert into sys_user (id, user_name, password, 
       phone, email, status, 
-      address, other_account, other_account_type, 
-      create_by, create_date, update_by, 
-      update_date)
+      address, account_money, create_by, 
+      create_date, update_by, update_date
+      )
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{address,jdbcType=VARCHAR}, #{otherAccount,jdbcType=VARCHAR}, #{otherAccountType,jdbcType=VARCHAR}, 
-      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
-      #{updateDate,jdbcType=TIMESTAMP})
+      #{address,jdbcType=VARCHAR}, #{accountMoney,jdbcType=DECIMAL}, #{createBy,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.lockie.clouduser.model.User">
     insert into sys_user
@@ -66,11 +65,8 @@
       <if test="address != null">
         address,
       </if>
-      <if test="otherAccount != null">
-        other_account,
-      </if>
-      <if test="otherAccountType != null">
-        other_account_type,
+      <if test="accountMoney != null">
+        account_money,
       </if>
       <if test="createBy != null">
         create_by,
@@ -107,11 +103,8 @@
       <if test="address != null">
         #{address,jdbcType=VARCHAR},
       </if>
-      <if test="otherAccount != null">
-        #{otherAccount,jdbcType=VARCHAR},
-      </if>
-      <if test="otherAccountType != null">
-        #{otherAccountType,jdbcType=VARCHAR},
+      <if test="accountMoney != null">
+        #{accountMoney,jdbcType=DECIMAL},
       </if>
       <if test="createBy != null">
         #{createBy,jdbcType=VARCHAR},
@@ -148,11 +141,8 @@
       <if test="address != null">
         address = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="otherAccount != null">
-        other_account = #{otherAccount,jdbcType=VARCHAR},
-      </if>
-      <if test="otherAccountType != null">
-        other_account_type = #{otherAccountType,jdbcType=VARCHAR},
+      <if test="accountMoney != null">
+        account_money = #{accountMoney,jdbcType=DECIMAL},
       </if>
       <if test="createBy != null">
         create_by = #{createBy,jdbcType=VARCHAR},
@@ -177,8 +167,7 @@
       email = #{email,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       address = #{address,jdbcType=VARCHAR},
-      other_account = #{otherAccount,jdbcType=VARCHAR},
-      other_account_type = #{otherAccountType,jdbcType=VARCHAR},
+      account_money = #{accountMoney,jdbcType=DECIMAL},
       create_by = #{createBy,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_by = #{updateBy,jdbcType=VARCHAR},

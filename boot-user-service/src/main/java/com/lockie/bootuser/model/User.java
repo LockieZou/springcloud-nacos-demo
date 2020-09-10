@@ -1,5 +1,6 @@
 package com.lockie.bootuser.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class User {
@@ -17,9 +18,7 @@ public class User {
 
     private String address;
 
-    private String otherAccount;
-
-    private String otherAccountType;
+    private BigDecimal accountMoney;
 
     private String createBy;
 
@@ -85,20 +84,12 @@ public class User {
         this.address = address == null ? null : address.trim();
     }
 
-    public String getOtherAccount() {
-        return otherAccount;
+    public BigDecimal getAccountMoney() {
+        return accountMoney;
     }
 
-    public void setOtherAccount(String otherAccount) {
-        this.otherAccount = otherAccount == null ? null : otherAccount.trim();
-    }
-
-    public String getOtherAccountType() {
-        return otherAccountType;
-    }
-
-    public void setOtherAccountType(String otherAccountType) {
-        this.otherAccountType = otherAccountType == null ? null : otherAccountType.trim();
+    public void setAccountMoney(BigDecimal accountMoney) {
+        this.accountMoney = accountMoney;
     }
 
     public String getCreateBy() {
