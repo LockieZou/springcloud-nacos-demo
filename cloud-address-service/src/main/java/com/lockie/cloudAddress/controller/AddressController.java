@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @author: 邹细良
+ * @author: lockie
  * @Date: 2020/9/9 14:02
  * @Description:
  */
@@ -19,9 +19,20 @@ public class AddressController extends BaseController {
 
     @Value("${nacos.test:132}")
     String nacosTest;
+    @Value("${spring.application.name}")
+    String applicationName;
 
     @Autowired
     CloudAddressService cloudAddressService;
+
+    /**
+     * 通用接口
+     * @return
+     */
+    @GetMapping("/helloWord")
+    public Results helloWord() {
+        return succeed("hello, this is " + applicationName);
+    }
 
     @GetMapping("/getProperties")
     public Results getProperties() {
@@ -46,7 +57,7 @@ public class AddressController extends BaseController {
      * @return
      */
     @PostMapping("/saveShopAddress")
-    public int saveShopAddress(@RequestBody ShopAddress shopAddress) {
+    public int saveShopAddress(@RequestBody ShopAddress shopAddress) throws Exception{
         if (shopAddress == null) {
             return 0;
         }

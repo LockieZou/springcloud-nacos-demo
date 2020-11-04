@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.math.BigDecimal;
+
 /**
  * @author: lockie
  * @Date: 2020/1/17 13:43
@@ -29,4 +31,24 @@ public interface CloudUserClient {
      */
     @GetMapping("/getUserById")
     User getUserById(@RequestParam("userId") Integer userId);
+
+    /**
+     * 增加用户账户金额
+     * @param userId
+     * @param accountMoney
+     * @return
+     */
+    @GetMapping("/increaseMoney")
+    User increaseMoney(@RequestParam("userId") Integer userId, @RequestParam("accountMoney") BigDecimal accountMoney);
+
+    /**
+     * 减少用户账户金额
+     *
+     * @param userId
+     * @param accountMoney
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/decreaseMoney")
+    User decreaseMoney(@RequestParam("userId") Integer userId, @RequestParam("accountMoney") BigDecimal accountMoney) throws Exception;
 }

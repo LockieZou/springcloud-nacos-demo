@@ -1,19 +1,23 @@
 package com.lockie.cloudorder.service.impl;
 
 import com.lockie.cloudorder.client.CloudAddressClient;
+import com.lockie.cloudorder.client.CloudUserClient;
 import com.lockie.cloudorder.mapper.ShopOrderMapper;
 import com.lockie.cloudorder.model.ShopAddress;
 import com.lockie.cloudorder.model.ShopOrder;
+import com.lockie.cloudorder.model.User;
 import com.lockie.cloudorder.service.CloudShopOrderService;
 import com.lockie.common.util.DateUtil;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * @author: 邹细良
+ * @author: lockie
  * @Date: 2020/9/8 16:24
  * @Description:
  */
@@ -23,6 +27,8 @@ public class CloudShopOrderServiceImpl implements CloudShopOrderService {
     ShopOrderMapper shopOrderMapper;
     @Autowired
     CloudAddressClient cloudAddressClient;
+    @Autowired
+    CloudUserClient cloudUserClient;
 
     /**
      * 根据ID查询
@@ -55,8 +61,9 @@ public class CloudShopOrderServiceImpl implements CloudShopOrderService {
      * @param shopOrder
      * @return
      */
+    @GlobalTransactional(rollbackFor = Exception.class)
     @Override
-    public int saveShopOrder(ShopOrder shopOrder) {
+    public int saveShopOrder(ShopOrder shopOrder, User user) throws Exception{
 
         // 生成单号
         String orderNo = DateUtil.getCurrentDateYMDHMSStr();
@@ -82,6 +89,12 @@ public class CloudShopOrderServiceImpl implements CloudShopOrderService {
 
             int n = cloudAddressClient.saveShopAddress(shopAddress);
         }
+
+        // 订单金额
+        BigDecimal orderTotal = new BigDecimal(shopOrder.getOrderTotal());
+        // 扣除用户余额
+        User updateUser = cloudUserClient.decreaseMoney(user.getId(), orderTotal);
+
         return i;
     }
 }

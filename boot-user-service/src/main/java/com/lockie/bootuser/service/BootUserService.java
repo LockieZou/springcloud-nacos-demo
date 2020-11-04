@@ -3,7 +3,7 @@ package com.lockie.bootuser.service;
 import com.lockie.bootuser.model.User;
 
 /**
- * @author: 邹细良
+ * @author: lockie
  * @Date: 2020/9/8 16:32
  * @Description:
  */

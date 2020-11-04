@@ -5,11 +5,12 @@ import com.lockie.cloudAddress.model.ShopAddress;
 import com.lockie.cloudAddress.service.CloudAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
 /**
- * @author: 邹细良
+ * @author: lockie
  * @Date: 2020/9/9 14:04
  * @Description:
  */
@@ -37,14 +38,16 @@ public class CloudAddressServiceImpl implements CloudAddressService {
      * @param shopAddress
      * @return
      */
+    @Transactional(rollbackFor = Exception.class)
     @Override
-    public int saveShopAddress(ShopAddress shopAddress) {
+    public int saveShopAddress(ShopAddress shopAddress) throws Exception {
         shopAddress.setCreateBy(1);
         shopAddress.setCreateDate(new Date());
         shopAddress.setUpdateBy(1);
         shopAddress.setUpdateDate(new Date());
 
-        return shopAddressMapper.insert(shopAddress);
+        int i = shopAddressMapper.insert(shopAddress);
+        return i;
     }
 
     /**

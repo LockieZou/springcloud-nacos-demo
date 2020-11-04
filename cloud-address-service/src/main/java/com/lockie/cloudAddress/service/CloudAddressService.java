@@ -3,7 +3,7 @@ package com.lockie.cloudAddress.service;
 import com.lockie.cloudAddress.model.ShopAddress;
 
 /**
- * @author: 邹细良
+ * @author: lockie
  * @Date: 2020/9/9 14:03
  * @Description:
  */
@@ -16,7 +16,7 @@ public interface CloudAddressService {
      * @param shopAddress
      * @return
      */
-    int saveShopAddress(ShopAddress shopAddress);
+    int saveShopAddress(ShopAddress shopAddress) throws Exception;
 
     /**
      * 根据订单ID查询地址

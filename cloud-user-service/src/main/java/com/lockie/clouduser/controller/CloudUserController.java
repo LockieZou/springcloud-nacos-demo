@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+
 /**
  * @author: lockie
  * @Date: 2020/1/10 16:26
@@ -28,6 +30,18 @@ public class CloudUserController extends BaseController {
 
     @Autowired
     CloudUserService cloudUserService;
+
+    @Value("${spring.application.name}")
+    String applicationName;
+
+    /**
+     * 通用接口
+     * @return
+     */
+    @GetMapping("/helloWord")
+    public Results helloWord() {
+        return succeed("hello, this is " + applicationName);
+    }
 
     @GetMapping("/getProperties")
     public Results getProperties() {
@@ -51,5 +65,37 @@ public class CloudUserController extends BaseController {
     @GetMapping("/getUserById")
     public User getUserById(@RequestParam("userId") Integer userId) {
         return cloudUserService.getUserById(userId);
+    }
+
+    /**
+     * 增加用户账户金额
+     * @param userId
+     * @param accountMoney
+     * @return
+     */
+    @GetMapping("/increaseMoney")
+    public User increaseMoney(@RequestParam("userId") Integer userId, @RequestParam("accountMoney") BigDecimal accountMoney) {
+        if (userId == null || accountMoney == null) {
+            return null;
+        }
+        User user = cloudUserService.increaseMoney(userId, accountMoney);
+        return user;
+    }
+
+    /**
+     * 减少用户账户金额
+     *
+     * @param userId
+     * @param accountMoney
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/decreaseMoney")
+    public User decreaseMoney(@RequestParam("userId") Integer userId, @RequestParam("accountMoney") BigDecimal accountMoney) throws Exception {
+        if (userId == null || accountMoney == null) {
+            return null;
+        }
+        User user = cloudUserService.decreaseMoney(userId, accountMoney);
+        return user;
     }
 }

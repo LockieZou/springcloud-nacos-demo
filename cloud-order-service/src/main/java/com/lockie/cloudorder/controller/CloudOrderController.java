@@ -32,6 +32,8 @@ public class CloudOrderController extends BaseController {
     String nacosTest;
     @Value("${spring.datasource.username:lockie}")
     String mysqlUserName;
+    @Value("${spring.application.name}")
+    String applicationName;
 
     @Autowired
     RestTemplate restTemplate;
@@ -42,6 +44,15 @@ public class CloudOrderController extends BaseController {
 
     private final static String USER_SERVICE = "cloud-user-service";
     private final static String GET_USER_NAME = "/cloudUser/getUserName";
+
+    /**
+     * 通用接口
+     * @return
+     */
+    @GetMapping("/helloWord")
+    public Results helloWord() {
+        return succeed("hello, this is " + applicationName);
+    }
 
     /**
      * 获取配置文件内容
@@ -107,12 +118,12 @@ public class CloudOrderController extends BaseController {
     }
 
     /**
-     * 添加order
+     * 添加order，分布式事务seata
      * @param shopOrder
      * @return
      */
     @PostMapping("/addOrder")
-    public Results addOrder(@RequestBody ShopOrder shopOrder) {
+    public Results addOrder(@RequestBody ShopOrder shopOrder) throws Exception {
         if (shopOrder == null || shopOrder.getShopAddress() == null) {
             return failure("订单或者订单地址为空！");
         }
@@ -122,11 +133,11 @@ public class CloudOrderController extends BaseController {
             if (user == null) {
                 return failure("用户不存在！");
             }
+
+            int i = cloudShopOrderService.saveShopOrder(shopOrder, user);
+            return succeed(i);
         } else {
             return failure("用户ID为空");
         }
-
-        int i = cloudShopOrderService.saveShopOrder(shopOrder);
-        return succeed(i);
     }
 }

@@ -2,6 +2,7 @@ package com.lockie.cloudorder.service;
 
 
 import com.lockie.cloudorder.model.ShopOrder;
+import com.lockie.cloudorder.model.User;
 
 /**
  * @author: lockie
@@ -19,5 +20,5 @@ public interface CloudShopOrderService {
      */
     ShopOrder getShopOrderByOrderNo(String orderNo);
 
-    int saveShopOrder(ShopOrder shopOrder);
+    int saveShopOrder(ShopOrder shopOrder, User user) throws Exception;
 }
