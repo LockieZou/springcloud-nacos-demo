@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.lockie.starter.config.IdAutoConfiguation,\
+  com.lockie.starter.config.LockieAutoConfiguration

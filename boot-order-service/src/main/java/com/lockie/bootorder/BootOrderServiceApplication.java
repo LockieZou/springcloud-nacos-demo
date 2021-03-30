@@ -11,7 +11,7 @@ import java.util.TimeZone;
 
 @Slf4j
 @MapperScan("com.lockie.bootorder.mapper")
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.lockie.starter")
 @NacosPropertySource(dataId = "boot-order-service", autoRefreshed = true)
 public class BootOrderServiceApplication {
 
