@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.lockie.bootuser.model.User">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="email" jdbcType="VARCHAR" property="email" />

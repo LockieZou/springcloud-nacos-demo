@@ -10,6 +10,8 @@ public class User {
 
     private String password;
 
+    private Integer sex;
+
     private String phone;
 
     private String email;
