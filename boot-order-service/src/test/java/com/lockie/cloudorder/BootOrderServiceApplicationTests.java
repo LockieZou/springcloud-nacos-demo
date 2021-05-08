@@ -1,6 +1,7 @@
 package com.lockie.cloudorder;
 
 import com.lockie.bootorder.BootOrderServiceApplication;
+import com.lockie.bootorder.service.impl.OrderSendThreadService;
 import com.lockie.starter.service.IdService;
 import com.lockie.starter.service.LockieService;
 import org.junit.jupiter.api.Test;
@@ -28,5 +29,17 @@ class BootOrderServiceApplicationTests {
 
         String str = lockieService.hello("小明");
         System.out.println("打招呼："+ str);
+    }
+
+    @Autowired
+    OrderSendThreadService orderSendThreadService;
+    @Test
+    public void sendOrderMessage() throws InterruptedException {
+        // 取消订单
+        orderSendThreadService.cancelOrder();
+        // 发送短信
+        orderSendThreadService.sendOrderPhoneMessage();
+        // 发送邮件
+        orderSendThreadService.sendOrderEmailMessage();
     }
 }

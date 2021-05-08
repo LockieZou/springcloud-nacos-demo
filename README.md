@@ -10,11 +10,13 @@ springcloud nacos demo 项目
 
 
 #### 服务说明
-- boot-order-service springboot nacos消费者,端口号 8001
-- boot-user-service springboot nacos服务提供者，端口号 8002
-- cloud-order-service springcloud nacos消费者，端口号 8003
-- cloud-user-service springcloud nacos服务提供者，端口号 8004  
-- cloud-address-service spring cloud消费者，端口号8005  
+- boot-user-service springboot nacos服务提供者，端口号 8801
+- boot-order-service springboot nacos消费者,端口号 8802
+- cloud-order-service springcloud nacos消费者，端口号 8803
+- cloud-user-service springcloud nacos服务提供者，端口号 8804  
+- cloud-address-service springcloud nacos消费者，端口号 8805  
+- cloud-gateway-service springcloud gateway网关,nacos消费者，端口号8806  
+- id-generate-spring-boot-start 自定义spring boot starter  
 
 
 
@@ -23,7 +25,11 @@ springcloud nacos demo 项目
 ##### 简要说明
 boot-order-service和boot-user-service集成了rocketMq所以启动的时候需要先启动本地的rocketMq，启动方式在下面。<br/>
 本地搭建nacos服务并启动然后访问http://127.0.0.1:8848/nacos 即可进入nacos控制台。<br/> 
+nacos配置数据持久化到mysql了，执行nacos_config.sql脚本即可  
 各个项目都集成了代码生成器  
+项目脚本 spring_cloud_demo.sql，nacos_config.sql  
+  
+
 
   
 配置中心：<br/>
@@ -48,6 +54,11 @@ cloud-order-service和cloud-user-service使用了通用的mysql配置
  cloud-user-service采用了RestTemplate和Feign两种方式调用    
  cloud-address-service采用了RestTemplate和Feign两种方式调用  
  
+ cloud-order-service调用了cloud-user-service、cloud-address-service  
+   
+ common-framework增加雪花算法获取分布式ID工具IdGenerateUtil，可以在各个服务中使用直接使用@Autowired就可以了  
+ 
+ 
    
   
 ##### RocketMQ 测试步骤  
@@ -57,3 +68,10 @@ cloud-order-service和cloud-user-service使用了通用的mysql配置
  执行 boot-order-service 项目的MQProducerController的send方法，发送消息 http://127.0.0.1:8802/mqProducer/send?msg=hello  
  
 
+##### 分布式事务Seata 测试步骤  
+1.执行seata脚本  
+2.启动本地nacos  
+3.启动seata，windows进入seata文件夹/bin目录，双击seata-server.bat即可，启动后就可以在nacos服务列表看到  
+![avatar](./nacos-seata.png)  
+ 
+ 

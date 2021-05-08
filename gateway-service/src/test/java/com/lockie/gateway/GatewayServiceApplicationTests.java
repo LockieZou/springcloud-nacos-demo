@@ -1,10 +1,10 @@
-package com.lockie.cloudorder;
+package com.lockie.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BootBootShopOrderServiceApplicationTests {
+class GatewayServiceApplicationTests {
 
     @Test
     void contextLoads() {
